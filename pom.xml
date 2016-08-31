@@ -158,6 +158,14 @@
 
         <maven-surefire-plugin_version>2.17</maven-surefire-plugin_version>
 	</properties>
+	
+	<distributionManagement>
+		<repository>
+			<id>thirdparty</id>
+			<url>http://115.159.237.15:8081/nexus/content/repositories/thirdparty/</url>
+		</repository>		
+	</distributionManagement>
+
 	<dependencyManagement>
 		<dependencies>
 			<!-- Common libs -->

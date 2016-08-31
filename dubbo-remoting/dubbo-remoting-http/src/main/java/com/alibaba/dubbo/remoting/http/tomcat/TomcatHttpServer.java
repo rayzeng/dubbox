@@ -62,7 +62,13 @@ public class TomcatHttpServer extends AbstractHttpServer {
         tomcat.getConnector().setProperty("URIEncoding", "UTF-8");
         tomcat.getConnector().setProperty("connectionTimeout", "60000");
 
-        tomcat.getConnector().setProperty("maxKeepAliveRequests", "-1");
+        boolean isKeepalive = url.getParameter(Constants.KEEP_ALIVE_KEY, true);
+        if(isKeepalive){
+        	tomcat.getConnector().setProperty("maxKeepAliveRequests", "-1");
+        } else {
+        	tomcat.getConnector().setProperty("maxKeepAliveRequests", "1");
+        }
+        
         tomcat.getConnector().setProtocol("org.apache.coyote.http11.Http11NioProtocol");
 
         Context context = tomcat.addContext("/", baseDir);
